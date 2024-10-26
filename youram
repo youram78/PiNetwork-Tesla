@@ -1,0 +1,27 @@
+class Blockchain:
+    def __init__(self, currency, value):
+        self.currency = currency
+        self.global_consensus_value = value  # Global Consensus Value of 1 Pi in USD
+
+    def get_conversion_rate(self):
+        # Returns the conversion rate for Pi in USD
+        return self.global_consensus_value
+
+class Transaction:
+    def __init__(self, buyer, seller, item, price_in_usd):
+        self.buyer = buyer
+        self.seller = seller
+        self.item = item
+        self.price_in_usd = price_in_usd
+
+    def execute_transaction(self, blockchain):
+        # Convert USD to Pi based on the blockchain's consensus value
+        price_in_pi = self.price_in_usd / blockchain.get_conversion_rate()
+        
+        # Assume buyer has sufficient balance and execute the transaction
+        print(f"Transaction successful! {self.buyer} bought {self.item} from {self.seller} for {price_in_pi} Pi.")
+
+# Example use case
+blockchain = Blockchain(currency="Pi", value=314.159)  # GCV set to 314.159 USD for 1 Pi
+transaction = Transaction(buyer="Pioneer1", seller="Tesla", item="Tesla Model 3", price_in_usd=39999)
+transaction.execute_transaction(blockchain)
